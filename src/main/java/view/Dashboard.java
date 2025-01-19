@@ -4,6 +4,9 @@
  */
 package view;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 /**
  *
  * @author DELL
@@ -16,6 +19,19 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         setLocationRelativeTo(null);
+        ImageIcon studentsIcon = new ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\PrivateTuitionManagementSystem\\test.png");
+        ImageIcon scheduleIcon = new ImageIcon("path/to/schedule.png");
+        ImageIcon billingIcon = new ImageIcon("path/to/billing.png");
+        ImageIcon settingIcon = new ImageIcon("path/to/setting.png");
+        ImageIcon reportIcon = new ImageIcon("path/to/report.png");
+        // Initialize buttons with icons 
+        JButton btnStudents = new JButton(studentsIcon);
+        JButton btnSchedule = new JButton(scheduleIcon);
+        JButton btnBilling = new JButton(billingIcon);
+        JButton btnSetting = new JButton(settingIcon);
+        JButton btnReport = new JButton(reportIcon);
+        System.out.println("Image path: " + studentsIcon.getDescription());
+
     }
 
     /**
@@ -35,7 +51,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnStudents.setText("s");
+        btnStudents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentsActionPerformed(evt);
+            }
+        });
 
         btnShedule.setText("sh");
 
@@ -63,25 +83,29 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnReport)
                     .addComponent(btnBilling))
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnStudents)
+                    .addComponent(btnStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnShedule)
                     .addComponent(btnBilling))
                 .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSetting)
                     .addComponent(btnReport))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStudentsActionPerformed
 
     /**
      * @param args the command line arguments

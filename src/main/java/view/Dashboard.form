@@ -41,7 +41,7 @@
                   <Component id="btnReport" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBilling" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="291" max="32767" attributes="0"/>
+              <EmptySpace pref="242" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,7 +50,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnStudents" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnStudents" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="btnShedule" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBilling" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -59,16 +59,16 @@
                   <Component id="btnSetting" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnReport" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="114" max="32767" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnStudents">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="s"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStudentsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnShedule">
       <Properties>
