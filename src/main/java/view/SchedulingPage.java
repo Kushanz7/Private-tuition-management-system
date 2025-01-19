@@ -8,6 +8,7 @@ import controller.ScheduleController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import model.DatabaseConnection;
@@ -50,6 +51,7 @@ public class SchedulingPage extends javax.swing.JFrame {
         tblSchedules = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         txtEndingTime = new javax.swing.JTextField();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +94,13 @@ public class SchedulingPage extends javax.swing.JFrame {
 
         jLabel5.setText("Ending Time");
 
+        btnDelete.setText("Delete✖️");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,29 +108,31 @@ public class SchedulingPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnBack))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(btnAdd)))
+                        .addContainerGap()
+                        .addComponent(btnBack)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEndingTime)
-                            .addComponent(txtSubject)
-                            .addComponent(cmbDay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtStartingTime)
-                            .addComponent(txtGrade))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
+                                .addGap(52, 52, 52)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEndingTime)
+                                    .addComponent(txtSubject)
+                                    .addComponent(cmbDay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtStartingTime)
+                                    .addComponent(txtGrade)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(btnAdd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnDelete)))))
                 .addGap(73, 73, 73)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
@@ -132,32 +143,35 @@ public class SchedulingPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnBack)
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cmbDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtStartingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtEndingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnAdd)
-                .addGap(16, 16, 16))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cmbDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtStartingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtEndingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnDelete))
+                        .addGap(21, 21, 21))))
         );
 
         pack();
@@ -176,59 +190,89 @@ public class SchedulingPage extends javax.swing.JFrame {
         loadSchedules();
     }//GEN-LAST:event_btnAddActionPerformed
 
-     private void loadSchedules() {
-        try {
-            // Database connection and query
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            Connection connection = databaseConnection.getConnection();
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM schedules");
-            ResultSet rs = ps.executeQuery();
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // Get data from text fields
+        String subject = txtSubject.getText();
+        String day = (String) cmbDay.getSelectedItem();
+        String startingTime = txtStartingTime.getText();
+        String endingTime = txtEndingTime.getText();
+        String grade = txtGrade.getText();
 
-            // Prepare column headers
-            Vector<String> columnHeaders = new Vector<>();
-            columnHeaders.add("Subject");
-            columnHeaders.add("Day");
-            columnHeaders.add("Starting Time");
-            columnHeaders.add("Ending Time");
-            columnHeaders.add("Grade");
+        // Confirm deletion
+        int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this schedule?", 
+                                                         "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+        if (confirmation == JOptionPane.YES_OPTION) {
+            // Call controller to delete schedule
+            ScheduleController controller = new ScheduleController();
+            boolean isDeleted = controller.deleteSchedule(subject, day, startingTime, endingTime, grade);
 
-            // Prepare rows of data
-            Vector<Vector<Object>> data = new Vector<>();
-            while (rs.next()) {
-                Vector<Object> row = new Vector<>();
-                row.add(rs.getString("subject"));
-                row.add(rs.getString("day"));
-                row.add(rs.getString("startingtime"));
-                row.add(rs.getString("endingtime"));
-                row.add(rs.getString("grade"));
-                data.add(row);
+            // Reload table if deletion was successful
+            if (isDeleted) {
+                loadSchedules();
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void loadSchedules() {
+        ScheduleController controller = new ScheduleController();
+        ArrayList<Object[]> schedules = controller.getAllSchedules();
+
+        // Column Headers
+        Vector<String> columnHeaders = new Vector<>();
+        columnHeaders.add("Subject");
+        columnHeaders.add("Day");
+        columnHeaders.add("Starting Time");
+        columnHeaders.add("Ending Time");
+        columnHeaders.add("Grade");
+
+        // Rows of data
+        Vector<Vector<Object>> data = new Vector<>();
+        for (Object[] schedule : schedules) {
+            Vector<Object> row = new Vector<>();
+            for (Object field : schedule) {
+                row.add(field);
+            }
+            data.add(row);
+        }
+
+        // Update JTable
+        tblSchedules.setModel(new javax.swing.table.AbstractTableModel() {
+            @Override
+            public int getRowCount() {
+                return data.size();
             }
 
-            // Set data and headers to JTable
-            tblSchedules.setModel(new javax.swing.table.AbstractTableModel() {
-                @Override
-                public int getRowCount() {
-                    return data.size();
-                }
+            @Override
+            public int getColumnCount() {
+                return columnHeaders.size();
+            }
 
-                @Override
-                public int getColumnCount() {
-                    return columnHeaders.size();
-                }
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                return data.get(rowIndex).get(columnIndex);
+            }
 
-                @Override
-                public Object getValueAt(int rowIndex, int columnIndex) {
-                    return data.get(rowIndex).get(columnIndex);
+            @Override
+            public String getColumnName(int column) {
+                return columnHeaders.get(column);
+            }
+        });
+        
+        // Add mouse listener for row click
+        tblSchedules.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int selectedRow = tblSchedules.getSelectedRow();
+                if (selectedRow != -1) {
+                    // Populate text fields with selected row data
+                    txtSubject.setText(tblSchedules.getValueAt(selectedRow, 0).toString());
+                    cmbDay.setSelectedItem(tblSchedules.getValueAt(selectedRow, 1).toString());
+                    txtStartingTime.setText(tblSchedules.getValueAt(selectedRow, 2).toString());
+                    txtEndingTime.setText(tblSchedules.getValueAt(selectedRow, 3).toString());
+                    txtGrade.setText(tblSchedules.getValueAt(selectedRow, 4).toString());
                 }
-
-                @Override
-                public String getColumnName(int column) {
-                    return columnHeaders.get(column);
-                }
-            });
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error loading schedules: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            }
+        });
     }
     /**
      * @param args the command line arguments
@@ -268,6 +312,7 @@ public class SchedulingPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JComboBox<String> cmbDay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

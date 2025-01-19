@@ -82,4 +82,22 @@ public class schedule {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
+    
+    public boolean deleteSchedule() {
+        try {
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            Connection connection = databaseConnection.getConnection();
+            String sql = "DELETE FROM schedules WHERE subject = ? AND day = ? AND grade = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, subject);
+            ps.setString(2, day);
+            ps.setString(3, grade);
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

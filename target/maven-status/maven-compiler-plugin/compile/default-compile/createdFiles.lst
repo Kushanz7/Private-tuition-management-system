@@ -10,6 +10,7 @@ view\BillingPage$1.class
 view\LoginPage.class
 view\Settings$1.class
 com\mycompany\privatetuitionmanagementsystem\PrivateTuitionManagementSystem$1.class
+view\SchedulingPage$6.class
 model\student.class
 model\DatabaseConnection.class
 view\StudentPage.class
@@ -25,6 +26,7 @@ view\SchedulingPage$4.class
 view\LoginPage$3.class
 view\Dashboard$2.class
 view\RegisterForm$4.class
+view\SchedulingPage$5.class
 controller\TutorRegisController.class
 model\tutor.class
 controller\ScheduleController.class
