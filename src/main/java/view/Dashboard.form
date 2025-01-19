@@ -73,21 +73,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="sh"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSheduleActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBilling">
       <Properties>
         <Property name="text" type="java.lang.String" value="b"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBillingActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSetting">
       <Properties>
         <Property name="text" type="java.lang.String" value="setting"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSettingActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnReport">
       <Properties>
         <Property name="text" type="java.lang.String" value="r"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -4,6 +4,14 @@
  */
 package view;
 
+import controller.ScheduleController;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import model.DatabaseConnection;
+
 /**
  *
  * @author DELL
@@ -15,6 +23,8 @@ public class SchedulingPage extends javax.swing.JFrame {
      */
     public SchedulingPage() {
         initComponents();
+        setLocationRelativeTo(null);
+        loadSchedules();
     }
 
     /**
@@ -26,22 +36,200 @@ public class SchedulingPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBack = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtSubject = new javax.swing.JTextField();
+        txtGrade = new javax.swing.JTextField();
+        cmbDay = new javax.swing.JComboBox<>();
+        txtStartingTime = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblSchedules = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        txtEndingTime = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnBack.setText("🔙Back to Dashboard");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Add➕");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Subject");
+
+        jLabel2.setText("Day");
+
+        jLabel3.setText("Grade");
+
+        jLabel4.setText("Starting Time");
+
+        cmbDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sunday", "Saturday" }));
+
+        tblSchedules.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblSchedules);
+
+        jLabel5.setText("Ending Time");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnBack))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(btnAdd)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEndingTime)
+                            .addComponent(txtSubject)
+                            .addComponent(cmbDay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtStartingTime)
+                            .addComponent(txtGrade))))
+                .addGap(73, 73, 73)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtStartingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEndingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAdd)
+                .addGap(16, 16, 16))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
+        SchedulingPage.this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        ScheduleController controller = new ScheduleController();
+        controller.saveSchedule(txtSubject.getText(),(String)cmbDay.getSelectedItem(),txtStartingTime.getText(),txtEndingTime.getText(),txtGrade.getText());
+        loadSchedules();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+     private void loadSchedules() {
+        try {
+            // Database connection and query
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM schedules");
+            ResultSet rs = ps.executeQuery();
+
+            // Prepare column headers
+            Vector<String> columnHeaders = new Vector<>();
+            columnHeaders.add("Subject");
+            columnHeaders.add("Day");
+            columnHeaders.add("Starting Time");
+            columnHeaders.add("Ending Time");
+            columnHeaders.add("Grade");
+
+            // Prepare rows of data
+            Vector<Vector<Object>> data = new Vector<>();
+            while (rs.next()) {
+                Vector<Object> row = new Vector<>();
+                row.add(rs.getString("subject"));
+                row.add(rs.getString("day"));
+                row.add(rs.getString("startingtime"));
+                row.add(rs.getString("endingtime"));
+                row.add(rs.getString("grade"));
+                data.add(row);
+            }
+
+            // Set data and headers to JTable
+            tblSchedules.setModel(new javax.swing.table.AbstractTableModel() {
+                @Override
+                public int getRowCount() {
+                    return data.size();
+                }
+
+                @Override
+                public int getColumnCount() {
+                    return columnHeaders.size();
+                }
+
+                @Override
+                public Object getValueAt(int rowIndex, int columnIndex) {
+                    return data.get(rowIndex).get(columnIndex);
+                }
+
+                @Override
+                public String getColumnName(int column) {
+                    return columnHeaders.get(column);
+                }
+            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error loading schedules: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -78,5 +266,19 @@ public class SchedulingPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JComboBox<String> cmbDay;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblSchedules;
+    private javax.swing.JTextField txtEndingTime;
+    private javax.swing.JTextField txtGrade;
+    private javax.swing.JTextField txtStartingTime;
+    private javax.swing.JTextField txtSubject;
     // End of variables declaration//GEN-END:variables
 }

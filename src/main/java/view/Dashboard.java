@@ -46,12 +46,32 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnShedule.setText("sh");
+        btnShedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSheduleActionPerformed(evt);
+            }
+        });
 
         btnBilling.setText("b");
+        btnBilling.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBillingActionPerformed(evt);
+            }
+        });
 
         btnSetting.setText("setting");
+        btnSetting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSettingActionPerformed(evt);
+            }
+        });
 
         btnReport.setText("r");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,8 +111,34 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentsActionPerformed
-        // TODO add your handling code here:
+        StudentPage sp = new StudentPage();
+        sp.setVisible(true);
+        Dashboard.this.setVisible(false);
     }//GEN-LAST:event_btnStudentsActionPerformed
+
+    private void btnSheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSheduleActionPerformed
+        SchedulingPage schedulingPage = new SchedulingPage();
+        schedulingPage.setVisible(true);
+        Dashboard.this.setVisible(false);
+    }//GEN-LAST:event_btnSheduleActionPerformed
+
+    private void btnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillingActionPerformed
+        BillingPage billingPage = new BillingPage();
+        billingPage.setVisible(true);
+        Dashboard.this.setVisible(false);
+    }//GEN-LAST:event_btnBillingActionPerformed
+
+    private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
+        Settings settings = new Settings();
+        settings.setVisible(true);
+        Dashboard.this.setVisible(false);
+    }//GEN-LAST:event_btnSettingActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        ReportPage reportPage = new ReportPage();
+        reportPage.setVisible(true);
+        Dashboard.this.setVisible(false);
+    }//GEN-LAST:event_btnReportActionPerformed
 
     /**
      * @param args the command line arguments
