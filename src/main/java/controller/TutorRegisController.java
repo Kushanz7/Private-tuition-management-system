@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import model.DatabaseConnection;
 import view.RegisterForm;
 import model.tutor;
+import view.Dashboard;
+import view.LoginPage;
 /**
  *
  * @author DELL
@@ -20,6 +22,7 @@ public class TutorRegisController {
             tutor tutor = new tutor(name, email, password);
             tutor.saveTutor();
             JOptionPane.showMessageDialog(null, "Tutor Registered Successfully!");
+            new LoginPage().setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }

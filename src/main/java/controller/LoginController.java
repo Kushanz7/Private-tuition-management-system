@@ -21,7 +21,7 @@ public class LoginController {
         try {
             DatabaseConnection.databaseConnect(); // Ensure the connection is established
             Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tutors WHERE email = ? AND password = ?");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tutor WHERE email = ? AND password = ?");
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
