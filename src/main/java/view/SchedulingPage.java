@@ -52,6 +52,7 @@ public class SchedulingPage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtEndingTime = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +102,13 @@ public class SchedulingPage extends javax.swing.JFrame {
             }
         });
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,13 +116,9 @@ public class SchedulingPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel1)
@@ -129,11 +133,18 @@ public class SchedulingPage extends javax.swing.JFrame {
                                     .addComponent(txtStartingTime)
                                     .addComponent(txtGrade)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(btnAdd)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDelete)))))
-                .addGap(73, 73, 73)
+                                .addContainerGap()
+                                .addComponent(btnBack)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(73, 73, 73))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnAdd)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete)
+                        .addGap(45, 45, 45)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -170,7 +181,8 @@ public class SchedulingPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
-                            .addComponent(btnDelete))
+                            .addComponent(btnDelete)
+                            .addComponent(btnUpdate))
                         .addGap(21, 21, 21))))
         );
 
@@ -212,6 +224,31 @@ public class SchedulingPage extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try {
+        // Retrieve current subject and grade (used as unique identifiers)
+        String currentSubject = txtSubject.getText();
+        String currentGrade = txtGrade.getText();
+
+        // Retrieve updated values
+        String newSubject = txtSubject.getText();
+        String day = cmbDay.getSelectedItem().toString();
+        String startingTime = txtStartingTime.getText();
+        String endingTime = txtEndingTime.getText();
+        String newGrade = txtGrade.getText();
+
+        // Call the controller's update method
+        ScheduleController controller = new ScheduleController();
+        controller.updateSchedule(currentSubject, currentGrade, newSubject, day, startingTime, endingTime, newGrade);
+
+        // Refresh the table
+        loadSchedules();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error updating schedule: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void loadSchedules() {
         ScheduleController controller = new ScheduleController();
@@ -313,6 +350,7 @@ public class SchedulingPage extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbDay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

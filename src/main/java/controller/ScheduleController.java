@@ -8,6 +8,7 @@ import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.DatabaseConnection;
@@ -66,4 +67,39 @@ public class ScheduleController {
             return false;
         }
     }
+    
+    public void updateSchedule(String subject, String grade, String newSubject, String day, String startingTime, String endingTime, String newGrade) {
+    try {
+        // Establish a database connection
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+
+        // Prepare the SQL update statement
+        String query = "UPDATE schedules SET subject = ?, day = ?, startingtime = ?, endingtime = ?, grade = ? WHERE subject = ? AND grade = ?";
+        PreparedStatement ps = connection.prepareStatement(query);
+
+        // Set the parameters
+        ps.setString(1, newSubject);
+        ps.setString(2, day);
+        ps.setString(3, startingTime);
+        ps.setString(4, endingTime);
+        ps.setString(5, newGrade);
+        ps.setString(6, subject);
+        ps.setString(7, grade);
+
+        // Execute the update
+        int rowsAffected = ps.executeUpdate();
+
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(null, "Schedule updated successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "No matching schedule found for the given subject and grade.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error updating schedule: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }
+
+}
+
+
