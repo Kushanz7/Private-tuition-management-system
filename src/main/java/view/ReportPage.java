@@ -4,6 +4,17 @@
  */
 package view;
 
+import controller.PdfGenerator;
+import static controller.PdfGenerator.generateStudentDetailsReport;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import static model.Billing.getFeeSummaryData;
+import model.FeeSummary;
+import model.marks;
+import static model.marks.getMarksByStudentId;
+import model.student;
+import static model.student.getAllStudents;
+
 /**
  *
  * @author DELL
@@ -26,21 +37,128 @@ public class ReportPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnStuDetails = new javax.swing.JButton();
+        btnMarksReport = new javax.swing.JButton();
+        txtStudentId = new javax.swing.JTextField();
+        btnFeeSummaryReport = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnStuDetails.setText("Student Details");
+        btnStuDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStuDetailsActionPerformed(evt);
+            }
+        });
+
+        btnMarksReport.setText("Marks Report");
+        btnMarksReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarksReportActionPerformed(evt);
+            }
+        });
+
+        btnFeeSummaryReport.setText("Fee Summary");
+        btnFeeSummaryReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeeSummaryReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(btnStuDetails)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMarksReport))
+                .addGap(68, 68, 68))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(btnFeeSummaryReport)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(txtStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStuDetails)
+                    .addComponent(btnMarksReport))
+                .addGap(80, 80, 80)
+                .addComponent(btnFeeSummaryReport)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStuDetailsActionPerformed
+         try {
+        // Step 1: Fetch all student data from the database
+        ArrayList<student> students = getAllStudents();
+
+        // Step 2: Specify the path where the PDF will be saved
+        String filePath = "student_details_report.pdf";  // You can change this to a user-specified location
+
+        // Step 3: Call the method to generate the PDF report
+        generateStudentDetailsReport(students, filePath);
+
+        // Step 4: Inform the user that the report has been generated
+        JOptionPane.showMessageDialog(this, "Student Details Report generated successfully: " + filePath);
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error generating report: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnStuDetailsActionPerformed
+
+    private void btnMarksReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarksReportActionPerformed
+        // Assume you have the student ID from a text field or elsewhere
+    try {
+        // Step 1: Get the student ID from a text field or other input source
+        int studentId = Integer.parseInt(txtStudentId.getText()); // Example, assuming a text field is used to enter student ID
+        
+        // Step 2: Fetch marks data for the student
+        ArrayList<marks> marksList = getMarksByStudentId(studentId);
+
+        // Step 3: Specify the path where the PDF will be saved
+        String filePath = "marks_report_student_" + studentId + ".pdf";  // You can change this to a user-specified location
+
+        // Step 4: Call the method to generate the marks report PDF
+        PdfGenerator.generateMarksReport(marksList, filePath);
+
+        // Step 5: Inform the user that the report has been generated
+        JOptionPane.showMessageDialog(this, "Marks Report generated successfully: " + filePath);
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error generating report: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnMarksReportActionPerformed
+
+    private void btnFeeSummaryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeeSummaryReportActionPerformed
+       try {
+        // Step 1: Fetch fee summary data from the database
+        ArrayList<FeeSummary> feeSummaryList = getFeeSummaryData();
+
+        // Step 2: Specify the path where the PDF will be saved
+        String filePath = "fee_summary_report.pdf";  // You can change this to a user-specified location
+
+        // Step 3: Call the method to generate the fee summary report PDF
+        PdfGenerator.generateFeeSummaryReport(feeSummaryList, filePath);
+
+        // Step 4: Inform the user that the report has been generated
+        JOptionPane.showMessageDialog(this, "Fee Summary Report generated successfully: " + filePath);
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error generating report: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } 
+    }//GEN-LAST:event_btnFeeSummaryReportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +196,9 @@ public class ReportPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFeeSummaryReport;
+    private javax.swing.JButton btnMarksReport;
+    private javax.swing.JButton btnStuDetails;
+    private javax.swing.JTextField txtStudentId;
     // End of variables declaration//GEN-END:variables
 }

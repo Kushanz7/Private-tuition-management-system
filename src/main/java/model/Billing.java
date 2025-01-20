@@ -5,6 +5,7 @@
 package model;
 
 import java.awt.List;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -93,4 +94,35 @@ public class Billing {
         }
         return billingList;
     }
+    
+    public static ArrayList<FeeSummary> getFeeSummaryData() {
+    ArrayList<FeeSummary> feeSummaryList = new ArrayList<>();
+    String query = """
+    SELECT s.name AS student_name, b.amount_paid, b.payment_date, b.month
+    FROM billing b
+    JOIN students s ON b.student_id = s.student_id
+    ORDER BY b.payment_date DESC
+    """;
+
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement ps = connection.prepareStatement(query);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            FeeSummary feeSummary = new FeeSummary(
+                rs.getString("student_name"),
+                rs.getDouble("amount_paid"),
+                rs.getDate("payment_date"),
+                rs.getString("month")
+            );
+            feeSummaryList.add(feeSummary);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return feeSummaryList;
+}
+
 }

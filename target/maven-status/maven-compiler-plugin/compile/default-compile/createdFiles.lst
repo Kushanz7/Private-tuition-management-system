@@ -1,6 +1,7 @@
 controller\studentController.class
 view\ReportPage$1.class
 com\mycompany\privatetuitionmanagementsystem\PrivateTuitionManagementSystem.class
+model\FeeSummary.class
 view\SchedulingPage$1.class
 view\Dashboard$3.class
 view\LoginPage$2.class
@@ -8,6 +9,7 @@ view\BillingPage$1.class
 view\MarksPage$2.class
 view\Settings$1.class
 controller\MarksController.class
+view\ReportPage$4.class
 view\MarksPage$5.class
 view\Dashboard$6.class
 view\StudentPage$5.class
@@ -35,6 +37,7 @@ view\MarksPage$7.class
 view\RegisterForm$3.class
 view\Dashboard$1.class
 view\StudentPage$3.class
+view\ReportPage$3.class
 view\LoginPage.class
 com\mycompany\privatetuitionmanagementsystem\PrivateTuitionManagementSystem$1.class
 view\SchedulingPage$6.class
@@ -50,12 +53,14 @@ controller\BillingController.class
 view\RoundedButton.class
 model\marks.class
 view\BillingPage$3.class
+controller\PdfGenerator.class
 view\Dashboard$2.class
 view\RegisterForm$4.class
 model\tutor.class
 view\BillingPage$2.class
 view\MarksPage$6.class
 view\SchedulingPage$7.class
+view\ReportPage$2.class
 controller\ScheduleController.class
 view\ReportPage.class
 view\StudentPage$2.class
