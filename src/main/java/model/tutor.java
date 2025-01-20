@@ -6,7 +6,9 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +25,9 @@ public class tutor {
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public tutor() {
     }
 
     public int getId() {
@@ -70,4 +75,50 @@ public class tutor {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString()); 
         } 
     }
+    
+    public static tutor getTutorDetails() {
+        tutor tutor = null;
+
+        // SQL query to retrieve tutor details
+        String query = "SELECT name, email, password FROM tutor LIMIT 1";  // No WHERE clause since only one tutor
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // Retrieve data from ResultSet
+                    String name = rs.getString("name");
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+
+                    // Create a Tutor object with the retrieved data
+                    tutor = new tutor(name, email, password);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tutor;
+    }
+    public void saveSubject(String subjectName) {
+    try {
+        // Get database connection
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        
+        // SQL query to insert a new subject into the subjects table
+        PreparedStatement ps = connection.prepareStatement("INSERT INTO subjects (name) VALUES (?)");
+        ps.setString(1, subjectName);
+        
+        // Execute the update to save the subject
+        ps.executeUpdate();
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+}
+
 }

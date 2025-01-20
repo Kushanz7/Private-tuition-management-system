@@ -30,6 +30,7 @@ view\StudentPage$1.class
 view\Dashboard.class
 view\RegisterForm$2.class
 view\BillingPage.class
+view\Settings$3.class
 model\schedule.class
 view\StudentPage$4.class
 view\MarksPage$4.class
@@ -43,6 +44,7 @@ com\mycompany\privatetuitionmanagementsystem\PrivateTuitionManagementSystem$1.cl
 view\SchedulingPage$6.class
 model\student.class
 model\DatabaseConnection.class
+view\Settings$2.class
 view\StudentPage.class
 view\Settings.class
 controller\LoginController.class

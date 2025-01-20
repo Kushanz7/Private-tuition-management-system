@@ -4,6 +4,20 @@
  */
 package view;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import model.DatabaseConnection;
+import model.tutor;
+
 /**
  *
  * @author DELL
@@ -15,6 +29,8 @@ public class Settings extends javax.swing.JFrame {
      */
     public Settings() {
         initComponents();
+        loadTutorDetails();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -26,22 +42,166 @@ public class Settings extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblName = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        txtSubjectName = new javax.swing.JTextField();
+        btnAddSub = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableSubjects = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblName.setText("jLabel1");
+
+        lblEmail.setText("jLabel2");
+
+        btnBack.setText("🔙Back to Dashboard");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnAddSub.setText("Add");
+        btnAddSub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSubActionPerformed(evt);
+            }
+        });
+
+        jTableSubjects.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableSubjects);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(txtSubjectName, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAddSub)))
+                        .addGap(0, 54, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblName)
+                            .addComponent(lblEmail))))
+                .addGap(295, 295, 295))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnBack)
+                .addGap(18, 18, 18)
+                .addComponent(lblName)
+                .addGap(29, 29, 29)
+                .addComponent(lblEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSubjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddSub))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+         Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
+        Settings.this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSubActionPerformed
+        String subjectName = txtSubjectName.getText().trim();
+    
+    if (!subjectName.isEmpty()) {
+        // Create an instance of your class (assuming the method is in that class)
+        tutor tutor = new tutor();
+        
+        // Call the saveSubject method to add the subject to the database
+        tutor.saveSubject(subjectName);
+        
+        // Show a success message
+        JOptionPane.showMessageDialog(this, "Subject added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        loadSubjectsToTable();
+        // Optionally, clear the text field after adding the subject
+        txtSubjectName.setText("");
+        
+    } else {
+        JOptionPane.showMessageDialog(this, "Please enter a subject name.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnAddSubActionPerformed
+public void loadSubjectsToTable() {
+    // Use try-with-resources to handle closing of connection, statement, and result set automatically
+    String query = "SELECT (name) FROM subjects";
+    
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement ps = connection.prepareStatement(query);
+         ResultSet rs = ps.executeQuery()) {
+        
+        // Set up the table model
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Subject Name");  // Column header
+        
+        // Loop through the result set and add each subject to the table model
+        while (rs.next()) {
+            model.addRow(new Object[]{rs.getString("name")});
+        }
+        
+        // Directly set the table model for your JTable (assumed as jTableSubjects)
+        jTableSubjects.setModel(model);
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+}
+
+
+
+
+    public void loadTutorDetails() {
+        // Retrieve tutor details by calling the model's static method
+        
+        tutor tutorr = tutor.getTutorDetails();
+
+        // Check if tutor data was successfully retrieved
+        if (tutorr != null) {
+            // Set the retrieved data to the text fields in your form
+            lblName.setText(tutorr.getName());
+            lblEmail.setText(tutorr.getEmail());
+            
+        } else {
+            // Handle the case where no tutor was found (shouldn't happen in this case)
+            JOptionPane.showMessageDialog(null, "No tutor found!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -78,5 +238,12 @@ public class Settings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddSub;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableSubjects;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JTextField txtSubjectName;
     // End of variables declaration//GEN-END:variables
 }
