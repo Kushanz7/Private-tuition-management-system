@@ -62,6 +62,11 @@ public class MarksPage extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblResult = new javax.swing.JTable();
+        txtid = new javax.swing.JTextField();
+        btnCheck = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -221,6 +226,55 @@ public class MarksPage extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Add Marks", jPanel1);
+
+        tblResult.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblResult);
+
+        btnCheck.setText("jButton1");
+        btnCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btnCheck)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCheck))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel2);
 
         btnBack.setText("🔙Back to Dashboard");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -383,6 +437,57 @@ private void loadMarks() {
         MarksPage.this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
+        String studentIdText = txtid.getText().trim(); // Get the student ID entered in the text field
+
+    if (studentIdText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter a Student ID.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    try {
+        int studentId = Integer.parseInt(studentIdText); // Parse the student ID to an integer
+
+        // Establish database connection
+        Connection connection = DatabaseConnection.getConnection();
+
+        // Query to fetch student details, marks, and subject by student ID
+        String query = """
+            SELECT s.name, m.subject, m.marks
+            FROM marks m
+            JOIN students s ON m.student_id = s.student_id
+            WHERE m.student_id = ?
+            ORDER BY m.month DESC
+        """;
+
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, studentId); // Set the student ID in the query
+        ResultSet rs = ps.executeQuery();
+
+        // Set up table data
+        DefaultTableModel tableModel = (DefaultTableModel) tblResult.getModel();
+        tableModel.setRowCount(0); // Clear existing rows
+
+        if (!rs.isBeforeFirst()) {
+            JOptionPane.showMessageDialog(this, "No results found for the given Student ID.", "No Results", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("name"),   // Student name
+                    rs.getString("subject"), // Subject
+                    rs.getInt("marks")       // Marks
+                };
+                tableModel.addRow(row); // Add row to the table
+            }
+        }
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Invalid Student ID format.", "Input Error", JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error retrieving student data: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnCheckActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -421,6 +526,7 @@ private void loadMarks() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
@@ -432,13 +538,17 @@ private void loadMarks() {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblMarks;
+    private javax.swing.JTable tblResult;
     private javax.swing.JTextField txtGrade;
     private javax.swing.JTextField txtMarks;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtStudentID;
     private javax.swing.JTextField txtSubject;
+    private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }

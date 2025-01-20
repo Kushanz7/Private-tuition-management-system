@@ -13,10 +13,12 @@ view\Dashboard$6.class
 view\StudentPage$5.class
 view\SchedulingPage.class
 view\RegisterForm.class
+model\Billing.class
 view\RegisterForm$1.class
 view\SchedulingPage$4.class
 view\MarksPage$1.class
 view\LoginPage$3.class
+view\MarksPage$8.class
 view\SchedulingPage$5.class
 controller\TutorRegisController.class
 view\SchedulingPage$2.class
@@ -44,11 +46,14 @@ controller\LoginController.class
 view\Dashboard$4.class
 view\MarksPage.class
 view\MarksPage$3.class
+controller\BillingController.class
 view\RoundedButton.class
 model\marks.class
+view\BillingPage$3.class
 view\Dashboard$2.class
 view\RegisterForm$4.class
 model\tutor.class
+view\BillingPage$2.class
 view\MarksPage$6.class
 view\SchedulingPage$7.class
 controller\ScheduleController.class
