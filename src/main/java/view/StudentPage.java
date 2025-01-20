@@ -23,7 +23,7 @@ public class StudentPage extends javax.swing.JFrame {
     tblStudents.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             int selectedRow = tblStudents.getSelectedRow();
-            txtID.setText(tblStudents.getValueAt(selectedRow, 1).toString());
+            txtID.setText(tblStudents.getValueAt(selectedRow, 0).toString());
             txtName.setText(tblStudents.getValueAt(selectedRow, 1).toString());
             txtContact.setText(tblStudents.getValueAt(selectedRow, 2).toString());
             txtEmail.setText(tblStudents.getValueAt(selectedRow, 3).toString());
@@ -134,6 +134,11 @@ public class StudentPage extends javax.swing.JFrame {
         });
 
         btnReset.setText("🔁");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         txtID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -300,6 +305,15 @@ public class StudentPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error deleting student: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtContact.setText("");
+        txtEmail.setText("");
+        txtGrade.setText("");
+        txtID.setText("");
+        txtName.setText("");
+        txtSubject.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
 
     
     

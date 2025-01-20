@@ -4,7 +4,9 @@
  */
 package controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.student;
@@ -69,4 +71,15 @@ public class studentController {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
     }
+
+    public Map<String, String> getStudentDetails(int studentId) {
+        try {
+            student studentModel = new student();
+            return studentModel.getStudentDetails(studentId);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error retrieving student details: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+
 }

@@ -8,7 +8,10 @@ import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -29,6 +32,9 @@ public class student {
         this.email = email;
         this.subject = subject;
         this.grade = grade;
+    }
+
+    public student() {
     }
 
     public int getStudent_id() {
@@ -163,5 +169,23 @@ public class student {
             e.printStackTrace();
         }
         return students;
+    }
+    
+    public Map<String, String> getStudentDetails(int studentId) throws SQLException {
+        Map<String, String> studentDetails = new HashMap<>();
+    String query = "SELECT name, subject, grade FROM students WHERE student_id = ?";
+
+    try (PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement(query)) {
+        ps.setInt(1, studentId);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                studentDetails.put("name", rs.getString("name"));
+                studentDetails.put("subject", rs.getString("subject"));
+                studentDetails.put("grade", rs.getString("grade"));
+            }
+        }
+    }
+    return studentDetails;
     }
 }
