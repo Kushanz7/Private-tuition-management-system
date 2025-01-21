@@ -6,6 +6,8 @@ package view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import model.tutor;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         setLocationRelativeTo(null);
+        loadTutorDetails();
     }
 
     /**
@@ -33,9 +36,10 @@ public class Dashboard extends javax.swing.JFrame {
         btnStudents = new javax.swing.JButton();
         btnShedule = new javax.swing.JButton();
         btnBilling = new javax.swing.JButton();
-        btnSetting = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
         btnMarks = new javax.swing.JButton();
+        lblName = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,13 +64,6 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        btnSetting.setText("setting");
-        btnSetting.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSettingActionPerformed(evt);
-            }
-        });
-
         btnReport.setText("r");
         btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +77,10 @@ public class Dashboard extends javax.swing.JFrame {
                 btnMarksActionPerformed(evt);
             }
         });
+
+        lblName.setText("jLabel1");
+
+        lblEmail.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,22 +99,29 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(83, 83, 83)
                         .addComponent(btnMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
                         .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEmail)
+                    .addComponent(lblName))
+                .addGap(211, 211, 211))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(18, 18, 18)
+                .addComponent(lblName)
+                .addGap(18, 18, 18)
+                .addComponent(lblEmail)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBilling, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnShedule, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -122,6 +130,23 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void loadTutorDetails() {
+        // Retrieve tutor details by calling the model's static method
+        
+        tutor tutorr = tutor.getTutorDetails();
+
+        // Check if tutor data was successfully retrieved
+        if (tutorr != null) {
+            // Set the retrieved data to the text fields in your form
+            lblName.setText(tutorr.getName());
+            lblEmail.setText(tutorr.getEmail());
+            
+        } else {
+            // Handle the case where no tutor was found (shouldn't happen in this case)
+            JOptionPane.showMessageDialog(null, "No tutor found!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void btnStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentsActionPerformed
         StudentPage sp = new StudentPage();
         sp.setVisible(true);
@@ -139,12 +164,6 @@ public class Dashboard extends javax.swing.JFrame {
         billingPage.setVisible(true);
         Dashboard.this.setVisible(false);
     }//GEN-LAST:event_btnBillingActionPerformed
-
-    private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
-        Settings settings = new Settings();
-        settings.setVisible(true);
-        Dashboard.this.setVisible(false);
-    }//GEN-LAST:event_btnSettingActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         ReportPage reportPage = new ReportPage();
@@ -197,8 +216,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnBilling;
     private javax.swing.JButton btnMarks;
     private javax.swing.JButton btnReport;
-    private javax.swing.JButton btnSetting;
     private javax.swing.JButton btnShedule;
     private javax.swing.JButton btnStudents;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblName;
     // End of variables declaration//GEN-END:variables
 }

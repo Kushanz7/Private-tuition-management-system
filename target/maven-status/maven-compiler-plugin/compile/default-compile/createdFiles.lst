@@ -7,7 +7,6 @@ view\Dashboard$3.class
 view\LoginPage$2.class
 view\BillingPage$1.class
 view\MarksPage$2.class
-view\Settings$1.class
 controller\MarksController.class
 view\ReportPage$4.class
 view\MarksPage$5.class
@@ -24,13 +23,11 @@ view\MarksPage$8.class
 view\SchedulingPage$5.class
 controller\TutorRegisController.class
 view\SchedulingPage$2.class
-view\Dashboard$7.class
 view\StudentPage$7.class
 view\StudentPage$1.class
 view\Dashboard.class
 view\RegisterForm$2.class
 view\BillingPage.class
-view\Settings$3.class
 model\schedule.class
 view\StudentPage$4.class
 view\MarksPage$4.class
@@ -44,9 +41,7 @@ com\mycompany\privatetuitionmanagementsystem\PrivateTuitionManagementSystem$1.cl
 view\SchedulingPage$6.class
 model\student.class
 model\DatabaseConnection.class
-view\Settings$2.class
 view\StudentPage.class
-view\Settings.class
 controller\LoginController.class
 view\Dashboard$4.class
 view\MarksPage.class

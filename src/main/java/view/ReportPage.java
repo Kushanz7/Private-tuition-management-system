@@ -26,6 +26,7 @@ public class ReportPage extends javax.swing.JFrame {
      */
     public ReportPage() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

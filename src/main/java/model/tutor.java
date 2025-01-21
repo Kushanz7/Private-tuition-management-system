@@ -108,17 +108,23 @@ public class tutor {
         // Get database connection
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
-        
+
         // SQL query to insert a new subject into the subjects table
         PreparedStatement ps = connection.prepareStatement("INSERT INTO subjects (name) VALUES (?)");
+
+        // Set the subject name as the parameter
         ps.setString(1, subjectName);
-        
+
         // Execute the update to save the subject
         ps.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Subject saved successfully!");
         
     } catch (SQLException e) {
+        // Handle SQL errors here
         JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
 }
+
 
 }
