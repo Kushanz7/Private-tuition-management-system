@@ -42,11 +42,7 @@
     <version>7.0.1</version>
     <type>jar</type>
 </dependency>
-<dependency>
-    <groupId>com.lowagie</groupId>
-    <artifactId>itext</artifactId>
-    <version>2.1.7</version>
-</dependency>
+
         <dependency>
             <groupId>net.sf.okapi.lib</groupId>
             <artifactId>okapi-lib-reporting</artifactId>
