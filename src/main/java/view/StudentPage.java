@@ -67,37 +67,40 @@ public class StudentPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnBack.setText("🔙Back to Dashboard");
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/left-arrow (1).png"))); // NOI18N
+        btnBack.setText("Back to Dashboard");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
         jLabel1.setText("Student Name");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
         jLabel2.setText("Contact Number");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
         jLabel3.setText("E-mail");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
         jLabel4.setText("Subject");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
         jLabel5.setText("Grade");
 
-        txtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtName.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
 
-        txtContact.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtContact.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
 
-        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
 
-        txtGrade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtGrade.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
 
-        txtSubject.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSubject.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
 
         tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,37 +115,51 @@ public class StudentPage extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblStudents);
 
-        btnAdd.setText("Add");
+        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
+        btnAdd.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add-button (2).png"))); // NOI18N
+        btnAdd.setText(" Add");
+        btnAdd.setAlignmentY(0.0F);
+        btnAdd.setMargin(new java.awt.Insets(3, 14, 3, 14));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
 
-        btnUpdate.setText("Update");
+        btnUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/loading-arrow (1).png"))); // NOI18N
+        btnUpdate.setText(" Update");
+        btnUpdate.setMargin(new java.awt.Insets(3, 14, 3, 14));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
-        btnDelete.setText("Delete");
+        btnDelete.setBackground(new java.awt.Color(255, 255, 255));
+        btnDelete.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete (1).png"))); // NOI18N
+        btnDelete.setText(" Delete");
+        btnDelete.setMargin(new java.awt.Insets(3, 14, 3, 14));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        btnReset.setText("🔁");
+        btnReset.setBackground(new java.awt.Color(237, 236, 236));
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete-2.png"))); // NOI18N
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
 
-        txtID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtID.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
         jLabel6.setText("Student ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,54 +167,53 @@ public class StudentPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBack)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(txtSubject)
-                            .addComponent(txtGrade)
-                            .addComponent(txtContact)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addComponent(btnBack))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
                         .addComponent(btnAdd)
-                        .addGap(36, 36, 36)
+                        .addGap(55, 55, 55)
                         .addComponent(btnUpdate))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
                         .addComponent(btnDelete))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnReset, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(55, 55, 55)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(55, 55, 55)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnReset)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(txtGrade)
+                                    .addComponent(txtSubject)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtContact, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtID))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -211,32 +227,25 @@ public class StudentPage extends javax.swing.JFrame {
                             .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(21, 21, 21)
+                        .addComponent(btnReset)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnReset)
-                                .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnAdd)
-                                    .addComponent(btnUpdate))
-                                .addGap(21, 34, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnDelete))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnUpdate))
+                        .addGap(28, 28, 28)
+                        .addComponent(btnDelete)
+                        .addGap(19, 19, 19))))
         );
 
         pack();

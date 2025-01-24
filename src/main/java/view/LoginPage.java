@@ -6,6 +6,7 @@ package view;
 
 import controller.LoginController;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,102 +23,7 @@ import javax.swing.border.Border;
  * @author DELL
  */
 
-class RoundedTextField extends JTextField {
-    private int radius;
 
-    public RoundedTextField(int radius) {
-        this.radius = radius;
-        setOpaque(false); // Allow for custom painting
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
-        g2.setColor(getForeground());
-        super.paintComponent(g2);
-        g2.dispose();
-    }
-
-    @Override
-    public void setBorder(Border border) {
-        super.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Padding inside the field
-    }
-
-    @Override
-    protected void paintBorder(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setColor(getForeground());
-        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
-        g2.dispose();
-    }
-}
-
-// Rounded Button Class
-class RoundedButton extends JButton {
-    private int radius;
-
-    public RoundedButton(String text, int radius) {
-        super(text);
-        this.radius = radius;
-        setContentAreaFilled(false); // Disable default button rendering
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        // Draw background
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
-
-        // Draw text
-        g2.setColor(getForeground());
-        FontMetrics fm = g.getFontMetrics();
-        int stringWidth = fm.stringWidth(getText());
-        int stringHeight = fm.getAscent();
-        g2.drawString(getText(), (getWidth() - stringWidth) / 2, (getHeight() + stringHeight) / 2 - 3);
-
-        g2.dispose();
-        super.paintComponent(g);
-    }
-}
-
-class RoundedPasswordField extends JPasswordField {
-    private int radius;
-
-    public RoundedPasswordField(int radius) {
-        this.radius = radius;
-        setOpaque(false); // Allow for custom painting
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
-        g2.setColor(getForeground());
-        super.paintComponent(g2);
-        g2.dispose();
-    }
-
-    @Override
-    public void setBorder(Border border) {
-        super.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Padding inside the field
-    }
-
-    @Override
-    protected void paintBorder(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setColor(getForeground());
-        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
-        g2.dispose();
-    }
-}
 public class LoginPage extends javax.swing.JFrame {
 
     /**
@@ -126,27 +32,7 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
         setLocationRelativeTo(null);
-        RoundedTextField roundedEmailField = new RoundedTextField(15);
-    roundedEmailField.setBounds(txtEmail.getBounds());
-    this.getContentPane().remove(txtEmail); // Remove the old text field
-    this.getContentPane().add(roundedEmailField); // Add the new one
-    txtEmail = roundedEmailField; // Update the reference
-    
-   RoundedPasswordField roundedPasswordField = new RoundedPasswordField(15);
-    roundedPasswordField.setBounds(pswT.getBounds());
-    this.getContentPane().remove(pswT); // Remove the old password field
-    this.getContentPane().add(roundedPasswordField); // Add the new one
-    pswT = roundedPasswordField; // Update the reference
-    
-     btnLogin.setBackground(new java.awt.Color(51, 153, 255));
-    btnLogin.setForeground(java.awt.Color.WHITE);
-    btnLogin.setFocusPainted(false);
-    btnLogin.setBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 2, true));
-
-    btnRegister.setBackground(new java.awt.Color(102, 255, 153));
-    btnRegister.setForeground(java.awt.Color.WHITE);
-    btnRegister.setFocusPainted(false);
-    btnRegister.setBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 2, true));
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,19 +49,27 @@ public class LoginPage extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Nachlieli CLM", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("E-mail");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Nachlieli CLM", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Password");
 
         pswT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        pswT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
-        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Myanmar Text", 0, 14)); // NOI18N
+        txtEmail.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
+        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogin.setForeground(new java.awt.Color(0, 102, 102));
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +77,8 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
+        btnRegister.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegister.setForeground(new java.awt.Color(0, 102, 102));
         btnRegister.setText("I don't have account");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,43 +86,51 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/key (1).png"))); // NOI18N
+        jLabel3.setText("s");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pswT)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(112, 112, 112))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(pswT, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2))
+                                    .addGap(83, 83, 83)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(pswT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(btnLogin)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pswT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addComponent(btnRegister)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -283,6 +187,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField pswT;
     private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables

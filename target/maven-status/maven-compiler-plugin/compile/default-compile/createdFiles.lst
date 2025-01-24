@@ -47,7 +47,6 @@ view\Dashboard$4.class
 view\MarksPage.class
 view\MarksPage$3.class
 controller\BillingController.class
-view\RoundedButton.class
 model\marks.class
 view\BillingPage$3.class
 view\Dashboard$2.class
@@ -61,9 +60,7 @@ controller\ScheduleController.class
 view\ReportPage.class
 view\StudentPage$2.class
 view\Dashboard$5.class
-view\RoundedTextField.class
 view\StudentPage$6.class
 view\LoginPage$1.class
 view\SchedulingPage$3.class
 view\ReportPage$5.class
-view\RoundedPasswordField.class
