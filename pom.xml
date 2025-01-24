@@ -36,7 +36,22 @@
     <artifactId>pdfbox</artifactId>
     <version>2.0.27</version> <!-- Latest stable version -->
 </dependency>
-
-
+<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports</artifactId>
+    <version>7.0.1</version>
+    <type>jar</type>
+</dependency>
+<dependency>
+    <groupId>com.lowagie</groupId>
+    <artifactId>itext</artifactId>
+    <version>2.1.7</version>
+</dependency>
+        <dependency>
+            <groupId>net.sf.okapi.lib</groupId>
+            <artifactId>okapi-lib-reporting</artifactId>
+            <version>1.47.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

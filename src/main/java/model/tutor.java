@@ -76,33 +76,6 @@ public class tutor {
         } 
     }
     
-    public static tutor getTutorDetails() {
-        tutor tutor = null;
-
-        // SQL query to retrieve tutor details
-        String query = "SELECT name, email, password FROM tutor LIMIT 1";  // No WHERE clause since only one tutor
-
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement ps = connection.prepareStatement(query)) {
-
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    // Retrieve data from ResultSet
-                    String name = rs.getString("name");
-                    String email = rs.getString("email");
-                    String password = rs.getString("password");
-
-                    // Create a Tutor object with the retrieved data
-                    tutor = new tutor(name, email, password);
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return tutor;
-    }
     public void saveSubject(String subjectName) {
     try {
         // Get database connection
@@ -124,7 +97,40 @@ public class tutor {
         // Handle SQL errors here
         JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
-}
+    
+ }
+    public tutor getTutorDetails() {
+    tutor tutor = null; // Initialize the tutor object
+    try {
+        // Get database connection
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
 
+        // Query to get tutor name and email
+        String query = "SELECT name, email FROM tutor";
+        PreparedStatement ps = connection.prepareStatement(query);
+
+        // Execute query
+        ResultSet rs = ps.executeQuery();
+
+        // If tutor data is found, create a Tutor object
+        if (rs.next()) {
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+            tutor = new tutor(); // Assuming a no-arg constructor exists
+            tutor.setName(name); // Assuming setter methods exist
+            tutor.setEmail(email);
+        }
+
+        // Close resources
+        rs.close();
+        ps.close();
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error retrieving tutor details: " + e.getMessage());
+    }
+    return tutor;
+}
 
 }

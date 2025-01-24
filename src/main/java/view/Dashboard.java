@@ -130,22 +130,25 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void loadTutorDetails() {
-        // Retrieve tutor details by calling the model's static method
-        
-        tutor tutorr = tutor.getTutorDetails();
+    private void loadTutorDetails() {
+    try {
+        // Fetch tutor details from the database
+        tutor tutorModel = new tutor();
+        tutor tutor = tutorModel.getTutorDetails();
 
-        // Check if tutor data was successfully retrieved
-        if (tutorr != null) {
-            // Set the retrieved data to the text fields in your form
-            lblName.setText(tutorr.getName());
-            lblEmail.setText(tutorr.getEmail());
-            
+        // Check if a tutor was found and update labels
+        if (tutor != null) {
+            lblName.setText(tutor.getName());
+            lblEmail.setText(tutor.getEmail());
         } else {
-            // Handle the case where no tutor was found (shouldn't happen in this case)
-            JOptionPane.showMessageDialog(null, "No tutor found!", "Error", JOptionPane.ERROR_MESSAGE);
+            lblName.setText("No Tutor Found");
+            lblEmail.setText("No Email Found");
         }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error loading tutor details: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
+
     
     private void btnStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentsActionPerformed
         StudentPage sp = new StudentPage();

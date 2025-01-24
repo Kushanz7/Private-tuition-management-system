@@ -50,7 +50,6 @@ controller\BillingController.class
 view\RoundedButton.class
 model\marks.class
 view\BillingPage$3.class
-controller\PdfGenerator.class
 view\Dashboard$2.class
 view\RegisterForm$4.class
 model\tutor.class
@@ -66,4 +65,5 @@ view\RoundedTextField.class
 view\StudentPage$6.class
 view\LoginPage$1.class
 view\SchedulingPage$3.class
+view\ReportPage$5.class
 view\RoundedPasswordField.class

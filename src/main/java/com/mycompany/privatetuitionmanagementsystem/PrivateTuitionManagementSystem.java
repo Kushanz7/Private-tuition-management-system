@@ -3,6 +3,10 @@
  */
 package com.mycompany.privatetuitionmanagementsystem;
 import javax.swing.SwingUtilities;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.okapi.lib.reporting.ReportGenerator;
 import view.LoginPage;
 /**
  *
@@ -16,5 +20,7 @@ public class PrivateTuitionManagementSystem {
                 new LoginPage().setVisible(true);
             }
     });
+       
+    
     }
 }

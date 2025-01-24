@@ -92,7 +92,7 @@ public class studentController {
         ArrayList<student> students = student.getAllStudents();
         // Logic for generating the PDF report goes here...
         // Example: Pass the list of students to a PDF generation method.
-        PdfGenerator.generateStudentDetailsReport(students, filePath);
+        
     }
 
 }

@@ -4,16 +4,29 @@
  */
 package view;
 
-import controller.PdfGenerator;
-import static controller.PdfGenerator.generateStudentDetailsReport;
+
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static model.Billing.getFeeSummaryData;
+import model.DatabaseConnection;
 import model.FeeSummary;
 import model.marks;
 import static model.marks.getMarksByStudentId;
 import model.student;
 import static model.student.getAllStudents;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -126,63 +139,90 @@ public class ReportPage extends javax.swing.JFrame {
 
     private void btnStuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStuDetailsActionPerformed
          try {
-        // Step 1: Fetch all student data from the database
-        ArrayList<student> students = getAllStudents();
+            // Load the Jasper file
+            String jasperPath = "C:\\Users\\DELL\\Documents\\NetBeansProjects\\PrivateTuitionManagementSystem\\src\\main\\resources\\reports\\sd.jasper"; // Path to your compiled .jasper file
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
 
-        // Step 2: Specify the path where the PDF will be saved
-        String filePath = "student_details_report.pdf";  // You can change this to a user-specified location
+            // No parameters
+            // Use JREmptyDataSource if no data source is required
+            //JRDataSource dataSource = new JREmptyDataSource();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            Connection connection = databaseConnection.getConnection();
 
-        // Step 3: Call the method to generate the PDF report
-        generateStudentDetailsReport(students, filePath);
+            // Fill the report
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
 
-        // Step 4: Inform the user that the report has been generated
-        JOptionPane.showMessageDialog(this, "Student Details Report generated successfully: " + filePath);
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error generating report: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            // View the report
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error generating report: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnStuDetailsActionPerformed
 
     private void btnMarksReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarksReportActionPerformed
-        // Assume you have the student ID from a text field or elsewhere
-    try {
-        // Step 1: Get the student ID from a text field or other input source
-        int studentId = Integer.parseInt(txtStudentId.getText()); // Example, assuming a text field is used to enter student ID
-        
-        // Step 2: Fetch marks data for the student
-        ArrayList<marks> marksList = getMarksByStudentId(studentId);
+        String studentIdInput = txtStudentId.getText(); // Assuming you have a JTextField named txtStudentId
+    
+        if (studentIdInput.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid Student ID.");
+            return;
+        }
 
-        // Step 3: Specify the path where the PDF will be saved
-        String filePath = "marks_report_student_" + studentId + ".pdf";  // You can change this to a user-specified location
+        Connection connection = null;
 
-        // Step 4: Call the method to generate the marks report PDF
-        PdfGenerator.generateMarksReport(marksList, filePath);
+        try {
+            // Parse the input as an integer (assuming student_id is an integer)
+            int studentId = Integer.parseInt(studentIdInput);
 
-        // Step 5: Inform the user that the report has been generated
-        JOptionPane.showMessageDialog(this, "Marks Report generated successfully: " + filePath);
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error generating report: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            // Get the database connection using your custom DatabaseConnection class
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            connection = databaseConnection.getConnection();
+
+            // Load the Jasper report
+            String jasperPath = "C:\\Users\\DELL\\Documents\\NetBeansProjects\\PrivateTuitionManagementSystem\\src\\main\\resources\\reports\\mr.jasper"; // Path to your compiled .jasper file
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
+
+            // Pass the student_id parameter
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("student_id", studentId); // Key must match parameter name in the .jrxml file
+
+            // Fill the report with data from the database
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
+
+            // View the report
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Student ID must be an integer.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error generating report: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnMarksReportActionPerformed
 
     private void btnFeeSummaryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeeSummaryReportActionPerformed
-       try {
-        // Step 1: Fetch fee summary data from the database
-        ArrayList<FeeSummary> feeSummaryList = getFeeSummaryData();
+      try {
+            // Load the Jasper file
+            String jasperPath = "C:\\Users\\DELL\\Documents\\NetBeansProjects\\PrivateTuitionManagementSystem\\src\\main\\resources\\reports\\a.jasper"; // Path to your compiled .jasper file
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
 
-        // Step 2: Specify the path where the PDF will be saved
-        String filePath = "fee_summary_report.pdf";  // You can change this to a user-specified location
+            // No parameters
+            // Use JREmptyDataSource if no data source is required
+            //JRDataSource dataSource = new JREmptyDataSource();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            Connection connection = databaseConnection.getConnection();
 
-        // Step 3: Call the method to generate the fee summary report PDF
-        PdfGenerator.generateFeeSummaryReport(feeSummaryList, filePath);
+            // Fill the report
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
 
-        // Step 4: Inform the user that the report has been generated
-        JOptionPane.showMessageDialog(this, "Fee Summary Report generated successfully: " + filePath);
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error generating report: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    } 
+            // View the report
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error generating report: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnFeeSummaryReportActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -234,4 +274,6 @@ public class ReportPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtStudentId;
     // End of variables declaration//GEN-END:variables
+
+   
 }
