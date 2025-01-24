@@ -145,6 +145,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         LoginController controller = new LoginController();
         controller.loginUser(txtEmail.getText(), pswT.getText());
+        LoginPage.this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

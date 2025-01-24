@@ -68,9 +68,9 @@ public class StudentPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
-        btnBack.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/left-arrow (1).png"))); // NOI18N
-        btnBack.setText("Back to Dashboard");
+        btnBack.setText(" Back to Dashboard");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -93,15 +93,21 @@ public class StudentPage extends javax.swing.JFrame {
         jLabel5.setText("Grade");
 
         txtName.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        txtName.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
         txtContact.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        txtContact.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
         txtEmail.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        txtEmail.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
         txtGrade.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        txtGrade.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
         txtSubject.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        txtSubject.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
+        tblStudents.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
         tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -116,7 +122,7 @@ public class StudentPage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblStudents);
 
         btnAdd.setBackground(new java.awt.Color(255, 255, 255));
-        btnAdd.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add-button (2).png"))); // NOI18N
         btnAdd.setText(" Add");
         btnAdd.setAlignmentY(0.0F);
@@ -128,7 +134,7 @@ public class StudentPage extends javax.swing.JFrame {
         });
 
         btnUpdate.setBackground(new java.awt.Color(255, 255, 255));
-        btnUpdate.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/loading-arrow (1).png"))); // NOI18N
         btnUpdate.setText(" Update");
         btnUpdate.setMargin(new java.awt.Insets(3, 14, 3, 14));
@@ -139,7 +145,7 @@ public class StudentPage extends javax.swing.JFrame {
         });
 
         btnDelete.setBackground(new java.awt.Color(255, 255, 255));
-        btnDelete.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete (1).png"))); // NOI18N
         btnDelete.setText(" Delete");
         btnDelete.setMargin(new java.awt.Insets(3, 14, 3, 14));
@@ -151,6 +157,7 @@ public class StudentPage extends javax.swing.JFrame {
 
         btnReset.setBackground(new java.awt.Color(237, 236, 236));
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete-2.png"))); // NOI18N
+        btnReset.setBorder(null);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -158,6 +165,7 @@ public class StudentPage extends javax.swing.JFrame {
         });
 
         txtID.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
+        txtID.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Nachlieli CLM", 0, 16)); // NOI18N
         jLabel6.setText("Student ID");
@@ -172,14 +180,17 @@ public class StudentPage extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnBack))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(btnDelete)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(btnAdd)
                         .addGap(55, 55, 55)
                         .addComponent(btnUpdate))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(btnDelete))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnReset)
@@ -199,21 +210,18 @@ public class StudentPage extends javax.swing.JFrame {
                                     .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtContact, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtID))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,9 +251,13 @@ public class StudentPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
                             .addComponent(btnUpdate))
-                        .addGap(28, 28, 28)
-                        .addComponent(btnDelete)
-                        .addGap(19, 19, 19))))
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)))
+                .addComponent(btnDelete)
+                .addGap(19, 19, 19))
         );
 
         pack();

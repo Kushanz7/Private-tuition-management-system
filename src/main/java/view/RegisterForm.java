@@ -179,6 +179,7 @@ public class RegisterForm extends javax.swing.JFrame {
         if (txtPass.getText().equals(txtConfirmPass.getText())) {
             TutorRegisController controller = new TutorRegisController();
             controller.saveTutorRegistration(txtName.getText(), txtemail.getText(), txtPass.getText());
+            RegisterForm.this.dispose();
         }else {
             JOptionPane.showMessageDialog(null, "Passwords do not match!"); 
         } 

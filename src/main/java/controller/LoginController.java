@@ -8,15 +8,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.DatabaseConnection;
 import view.Dashboard;
+import view.LoginPage;
 
 /**
  *
  * @author DELL
  */
 public class LoginController {
+  
+    
     public void loginUser(String email, String password) {
         try {
             DatabaseConnection.databaseConnect(); // Ensure the connection is established
@@ -27,6 +31,7 @@ public class LoginController {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 // Login successful, redirect to main page
+                
                 new Dashboard().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid email or password!");
