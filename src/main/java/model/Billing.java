@@ -4,13 +4,18 @@
  */
 package model;
 
+import com.mysql.cj.protocol.Message;
+import com.mysql.cj.xdevapi.Session;
+import com.sun.jdi.connect.Transport;
 import java.awt.List;
+import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  *
@@ -123,6 +128,20 @@ public class Billing {
     }
 
     return feeSummaryList;
+}
+
+    // Retrieve student email by student ID
+private String getStudentEmail(int studentId) throws SQLException {
+    String email = null;
+    String query = "SELECT email FROM students WHERE student_id = ?";
+    try (PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement(query)) {
+        ps.setInt(1, studentId);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            email = rs.getString("email");
+        }
+    }
+    return email;
 }
 
 }
