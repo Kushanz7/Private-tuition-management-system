@@ -107,10 +107,10 @@
                   </Group>
               </Group>
               <EmptySpace pref="54" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnStudents" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnBilling" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                   <Component id="btnShedule" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="btnStudents" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

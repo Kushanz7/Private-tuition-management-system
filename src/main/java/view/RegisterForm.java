@@ -172,7 +172,7 @@ public class RegisterForm extends javax.swing.JFrame {
         return txtPass.getText();
     }
     private void txtConfirmPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmPassActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtConfirmPassActionPerformed
 
     private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed

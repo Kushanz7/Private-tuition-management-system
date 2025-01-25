@@ -42,7 +42,6 @@
     <version>7.0.1</version>
     <type>jar</type>
 </dependency>
-
         <dependency>
             <groupId>net.sf.okapi.lib</groupId>
             <artifactId>okapi-lib-reporting</artifactId>

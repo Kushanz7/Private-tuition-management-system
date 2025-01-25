@@ -138,7 +138,7 @@ public class marks {
         return data;
     }
     
-     // Method to retrieve marks for a student by ID
+     
     public static ArrayList<marks> getMarksByStudentId(int studentId) {
         ArrayList<marks> marksList = new ArrayList<>();
         String query = """

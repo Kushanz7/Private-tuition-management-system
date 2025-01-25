@@ -82,16 +82,14 @@ public class studentController {
         }
     }
     
-    // Fetches all students from the model
+    
     public ArrayList<student> getAllStudents() throws SQLException {
         return student.getAllStudents();
     }
-
-    // Generates the Student Details Report
+    
     public void generateStudentDetailsReport(String filePath) {
         ArrayList<student> students = student.getAllStudents();
-        // Logic for generating the PDF report goes here...
-        // Example: Pass the list of students to a PDF generation method.
+        
         
     }
 

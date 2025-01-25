@@ -78,51 +78,47 @@ public class tutor {
     
     public void saveSubject(String subjectName) {
     try {
-        // Get database connection
+        
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
-        // SQL query to insert a new subject into the subjects table
+        
         PreparedStatement ps = connection.prepareStatement("INSERT INTO subjects (name) VALUES (?)");
-
-        // Set the subject name as the parameter
         ps.setString(1, subjectName);
-
-        // Execute the update to save the subject
         ps.executeUpdate();
 
         JOptionPane.showMessageDialog(null, "Subject saved successfully!");
         
     } catch (SQLException e) {
-        // Handle SQL errors here
+        
         JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
     
  }
     public tutor getTutorDetails() {
-    tutor tutor = null; // Initialize the tutor object
+    tutor tutor = null; 
     try {
-        // Get database connection
+        
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
-        // Query to get tutor name and email
+        
         String query = "SELECT name, email FROM tutor";
         PreparedStatement ps = connection.prepareStatement(query);
 
-        // Execute query
+        
         ResultSet rs = ps.executeQuery();
 
-        // If tutor data is found, create a Tutor object
+        
         if (rs.next()) {
             String name = rs.getString("name");
             String email = rs.getString("email");
-            tutor = new tutor(); // Assuming a no-arg constructor exists
-            tutor.setName(name); // Assuming setter methods exist
+            tutor = new tutor(); 
+            tutor.setName(name); 
             tutor.setEmail(email);
         }
 
-        // Close resources
+        
         rs.close();
         ps.close();
         

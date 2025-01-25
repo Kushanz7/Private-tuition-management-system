@@ -23,14 +23,14 @@ public class LoginController {
     
     public void loginUser(String email, String password) {
         try {
-            DatabaseConnection.databaseConnect(); // Ensure the connection is established
+            DatabaseConnection.databaseConnect(); 
             Connection conn = DatabaseConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM tutor WHERE email = ? AND password = ?");
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                // Login successful, redirect to main page
+                
                 
                 new Dashboard().setVisible(true);
             } else {

@@ -19,7 +19,7 @@ public class StudentPage extends javax.swing.JFrame {
     public StudentPage() {
         initComponents();
         setLocationRelativeTo(null);
-        // Add table click listener
+        
     tblStudents.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             int selectedRow = tblStudents.getSelectedRow();
@@ -31,7 +31,7 @@ public class StudentPage extends javax.swing.JFrame {
             txtGrade.setText(tblStudents.getValueAt(selectedRow, 5).toString());
         }
     });
-    // Load students when form opens
+    
     studentController controller = new studentController();
     controller.loadAllStudents(tblStudents);
     }
@@ -297,7 +297,7 @@ public class StudentPage extends javax.swing.JFrame {
             );
             JOptionPane.showMessageDialog(this, "Student updated successfully!");
 
-            // Reload the table
+            
             controller.loadAllStudents(tblStudents);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Invalid Student ID format.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -317,7 +317,7 @@ public class StudentPage extends javax.swing.JFrame {
                 controller.deleteStudent(studentId);
                 JOptionPane.showMessageDialog(this, "Student deleted successfully!");
 
-                // Reload the table
+                
                 controller.loadAllStudents(tblStudents);
             }
         } catch (NumberFormatException e) {

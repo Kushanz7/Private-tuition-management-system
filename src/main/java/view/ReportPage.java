@@ -154,20 +154,19 @@ public class ReportPage extends javax.swing.JFrame {
 
     private void btnStuDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStuDetailsActionPerformed
          try {
-            // Load the Jasper file
+            
             String jasperPath = "C:\\Users\\DELL\\Documents\\NetBeansProjects\\PrivateTuitionManagementSystem\\src\\main\\resources\\reports\\sd.jasper"; // Path to your compiled .jasper file
             JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
 
-            // No parameters
-            // Use JREmptyDataSource if no data source is required
+            
             //JRDataSource dataSource = new JREmptyDataSource();
             DatabaseConnection databaseConnection = new DatabaseConnection();
             Connection connection = databaseConnection.getConnection();
 
-            // Fill the report
+            
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
 
-            // View the report
+            
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (JRException ex) {
@@ -187,25 +186,25 @@ public class ReportPage extends javax.swing.JFrame {
         Connection connection = null;
 
         try {
-            // Parse the input as an integer (assuming student_id is an integer)
+            
             int studentId = Integer.parseInt(studentIdInput);
 
-            // Get the database connection using your custom DatabaseConnection class
+            
             DatabaseConnection databaseConnection = new DatabaseConnection();
             connection = databaseConnection.getConnection();
 
-            // Load the Jasper report
+            
             String jasperPath = "C:\\Users\\DELL\\Documents\\NetBeansProjects\\PrivateTuitionManagementSystem\\src\\main\\resources\\reports\\mr.jasper"; // Path to your compiled .jasper file
             JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
 
-            // Pass the student_id parameter
+            
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("student_id", studentId); // Key must match parameter name in the .jrxml file
+            parameters.put("student_id", studentId); 
 
-            // Fill the report with data from the database
+            
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
 
-            // View the report
+            
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (NumberFormatException ex) {
@@ -218,20 +217,19 @@ public class ReportPage extends javax.swing.JFrame {
 
     private void btnFeeSummaryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeeSummaryReportActionPerformed
       try {
-            // Load the Jasper file
+            
             String jasperPath = "C:\\Users\\DELL\\Documents\\NetBeansProjects\\PrivateTuitionManagementSystem\\src\\main\\resources\\reports\\a.jasper"; // Path to your compiled .jasper file
             JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
 
-            // No parameters
-            // Use JREmptyDataSource if no data source is required
+            
             //JRDataSource dataSource = new JREmptyDataSource();
             DatabaseConnection databaseConnection = new DatabaseConnection();
             Connection connection = databaseConnection.getConnection();
 
-            // Fill the report
+            
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
 
-            // View the report
+            
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (JRException ex) {

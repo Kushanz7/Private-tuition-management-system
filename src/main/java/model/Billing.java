@@ -67,7 +67,7 @@ public class Billing {
         this.paymentDate = paymentDate;
     }
     
-    // Save payment details to the database
+    
     public void saveBilling() throws SQLException {
         String query = "INSERT INTO billing (student_id, month, amount_paid) VALUES (?, ?,?)";
         try (PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement(query)) {
@@ -79,7 +79,7 @@ public class Billing {
         }
     }
     
-    // Retrieve payment details for a student
+    
     public static ArrayList<Billing> getBillingByStudentId(int studentId) throws SQLException {
         ArrayList<Billing> billingList = new ArrayList<>();
         String query = "SELECT * FROM billing WHERE student_id = ?";
@@ -130,7 +130,7 @@ public class Billing {
     return feeSummaryList;
 }
 
-    // Retrieve student email by student ID
+    
 private String getStudentEmail(int studentId) throws SQLException {
     String email = null;
     String query = "SELECT email FROM students WHERE student_id = ?";

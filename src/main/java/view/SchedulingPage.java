@@ -233,22 +233,22 @@ public class SchedulingPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // Get data from text fields
+        
         String subject = txtSubject.getText();
         String day = (String) cmbDay.getSelectedItem();
         String startingTime = txtStartingTime.getText();
         String endingTime = txtEndingTime.getText();
         String grade = txtGrade.getText();
 
-        // Confirm deletion
+        
         int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this schedule?", 
                                                          "Confirm Deletion", JOptionPane.YES_NO_OPTION);
         if (confirmation == JOptionPane.YES_OPTION) {
-            // Call controller to delete schedule
+            
             ScheduleController controller = new ScheduleController();
             boolean isDeleted = controller.deleteSchedule(subject, day, startingTime, endingTime, grade);
 
-            // Reload table if deletion was successful
+            
             if (isDeleted) {
                 loadSchedules();
             }
@@ -257,22 +257,22 @@ public class SchedulingPage extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-        // Retrieve current subject and grade (used as unique identifiers)
+        
         String currentSubject = txtSubject.getText();
         String currentGrade = txtGrade.getText();
 
-        // Retrieve updated values
+        
         String newSubject = txtSubject.getText();
         String day = cmbDay.getSelectedItem().toString();
         String startingTime = txtStartingTime.getText();
         String endingTime = txtEndingTime.getText();
         String newGrade = txtGrade.getText();
 
-        // Call the controller's update method
+        
         ScheduleController controller = new ScheduleController();
         controller.updateSchedule(currentSubject, currentGrade, newSubject, day, startingTime, endingTime, newGrade);
 
-        // Refresh the table
+        
         loadSchedules();
 
     } catch (Exception e) {
@@ -284,7 +284,7 @@ public class SchedulingPage extends javax.swing.JFrame {
         ScheduleController controller = new ScheduleController();
         ArrayList<Object[]> schedules = controller.getAllSchedules();
 
-        // Column Headers
+        
         Vector<String> columnHeaders = new Vector<>();
         columnHeaders.add("Subject");
         columnHeaders.add("Day");
@@ -292,7 +292,7 @@ public class SchedulingPage extends javax.swing.JFrame {
         columnHeaders.add("Ending Time");
         columnHeaders.add("Grade");
 
-        // Rows of data
+        
         Vector<Vector<Object>> data = new Vector<>();
         for (Object[] schedule : schedules) {
             Vector<Object> row = new Vector<>();
@@ -302,7 +302,7 @@ public class SchedulingPage extends javax.swing.JFrame {
             data.add(row);
         }
 
-        // Update JTable
+        
         tblSchedules.setModel(new javax.swing.table.AbstractTableModel() {
             @Override
             public int getRowCount() {
@@ -325,7 +325,7 @@ public class SchedulingPage extends javax.swing.JFrame {
             }
         });
         
-        // Add mouse listener for row click
+        
         tblSchedules.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {

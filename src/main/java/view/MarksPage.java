@@ -236,10 +236,11 @@ public class MarksPage extends javax.swing.JFrame {
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbMonths, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnReset))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReset, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAdd)
+                        .addComponent(btnUpdate)))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -342,7 +343,7 @@ public class MarksPage extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
-        // Validate input fields
+        
         if (txtStudentID.getText().isEmpty() || cmbMonths.getSelectedItem()== null || txtSubject.getText().isEmpty() || txtMarks.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Validation Error", JOptionPane.WARNING_MESSAGE);
             return;
@@ -353,11 +354,11 @@ public class MarksPage extends javax.swing.JFrame {
         String subject = txtSubject.getText();
         int marks = Integer.parseInt(txtMarks.getText());
 
-        // Add marks using the controller
+        
         MarksController controller = new MarksController();
         controller.addMarks(studentId, month, subject, marks);
 
-        // Reload table data
+        
         loadMarks();
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "Invalid input. Ensure Student ID and Marks are numbers.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -365,18 +366,18 @@ public class MarksPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 private void loadMarks() {
     try {
-        // Get all marks data from the controller
+        
         MarksController controller = new MarksController();
         Vector<Vector<Object>> data = controller.getAllMarks();
 
-        // Define column headers
+        
         Vector<String> columnHeaders = new Vector<>();
         columnHeaders.add("Student ID");
         columnHeaders.add("Month");
         columnHeaders.add("Subject");
         columnHeaders.add("Marks");
 
-        // Set data and headers to JTable
+        
         tblMarks.setModel(new javax.swing.table.AbstractTableModel() {
             @Override
             public int getRowCount() {
@@ -405,24 +406,24 @@ private void loadMarks() {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-        // Validate input fields
+        
         if (txtStudentID.getText().isEmpty() || cmbMonths.getSelectedItem() == null || 
             txtSubject.getText().isEmpty() || txtMarks.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Validation Error", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Parse and retrieve data from input fields
+        
         int studentId = Integer.parseInt(txtStudentID.getText());
         String month = cmbMonths.getSelectedItem().toString();
         String subject = txtSubject.getText();
         int marks = Integer.parseInt(txtMarks.getText());
 
-        // Call the updateMarks method from the controller
+        
         MarksController controller = new MarksController();
         controller.updateMarks(studentId, month, subject, marks);
 
-        // Optionally reload the table or refresh the form
+        
         loadMarks();
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid input format. Please ensure Student ID and Marks are numbers.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -433,7 +434,7 @@ private void loadMarks() {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         try {
-        // Validate Student ID field
+        
         if (txtStudentID.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a Student ID.", "Validation Error", JOptionPane.WARNING_MESSAGE);
             return;
@@ -441,12 +442,12 @@ private void loadMarks() {
 
         int studentId = Integer.parseInt(txtStudentID.getText());
 
-        // Retrieve student details
+        
         studentController controller = new studentController();
         Map<String, String> studentDetails = controller.getStudentDetails(studentId);
 
         if (studentDetails != null) {
-            // Set retrieved data to the text fields
+            
             txtName.setText(studentDetails.get("name"));
             txtSubject.setText(studentDetails.get("subject"));
             txtGrade.setText(studentDetails.get("grade"));
@@ -473,7 +474,7 @@ private void loadMarks() {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
-        String studentIdText = txtid.getText().trim(); // Get the student ID entered in the text field
+        String studentIdText = txtid.getText().trim(); 
 
     if (studentIdText.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Please enter a Student ID.", "Validation Error", JOptionPane.WARNING_MESSAGE);
@@ -481,12 +482,12 @@ private void loadMarks() {
     }
 
     try {
-        int studentId = Integer.parseInt(studentIdText); // Parse the student ID to an integer
+        int studentId = Integer.parseInt(studentIdText); 
 
-        // Establish database connection
+        
         Connection connection = DatabaseConnection.getConnection();
 
-        // Query to fetch student details, marks, and subject by student ID
+        
         String query = """
             SELECT s.name, m.subject, m.marks
             FROM marks m
@@ -496,23 +497,23 @@ private void loadMarks() {
         """;
 
         PreparedStatement ps = connection.prepareStatement(query);
-        ps.setInt(1, studentId); // Set the student ID in the query
+        ps.setInt(1, studentId); 
         ResultSet rs = ps.executeQuery();
 
-        // Set up table data
+        
         DefaultTableModel tableModel = (DefaultTableModel) tblResult.getModel();
-        tableModel.setRowCount(0); // Clear existing rows
+        tableModel.setRowCount(0); 
 
         if (!rs.isBeforeFirst()) {
             JOptionPane.showMessageDialog(this, "No results found for the given Student ID.", "No Results", JOptionPane.INFORMATION_MESSAGE);
         } else {
             while (rs.next()) {
                 Object[] row = {
-                    rs.getString("name"),   // Student name
-                    rs.getString("subject"), // Subject
-                    rs.getInt("marks")       // Marks
+                    rs.getString("name"),   
+                    rs.getString("subject"), 
+                    rs.getInt("marks")       
                 };
-                tableModel.addRow(row); // Add row to the table
+                tableModel.addRow(row); 
             }
         }
 

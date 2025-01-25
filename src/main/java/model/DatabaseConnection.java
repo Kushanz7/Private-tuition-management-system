@@ -33,7 +33,7 @@ public class DatabaseConnection {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error checking database connection: " + e.getMessage(), "Connection Error", JOptionPane.ERROR_MESSAGE);
-            databaseConnect(); // Reconnect if necessary
+            databaseConnect(); 
         }
         return connection;
     }

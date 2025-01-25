@@ -174,7 +174,7 @@ public class BillingPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaymentActionPerformed
-        // Validate input fields
+        
         if (txtStudentID.getText().isEmpty() || txtAmount.getText().isEmpty() || cmbMonth.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Validation Error", JOptionPane.WARNING_MESSAGE);
             return;
@@ -201,10 +201,10 @@ public class BillingPage extends javax.swing.JFrame {
 
     private void loadPaymentHistory() {
     try {
-        // Establish database connection
+        
         Connection connection = DatabaseConnection.getConnection();
 
-        // Query to fetch payment history
+        
         String query = """
             SELECT b.id, s.name, b.month, b.amount_paid, b.payment_date
             FROM billing b
@@ -215,9 +215,9 @@ public class BillingPage extends javax.swing.JFrame {
         PreparedStatement ps = connection.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
 
-        // Set up table data
+        
         DefaultTableModel tableModel = (DefaultTableModel) tblPaymentHistory.getModel();
-        tableModel.setRowCount(0); // Clear existing rows
+        tableModel.setRowCount(0); 
 
         while (rs.next()) {
             Object[] row = {

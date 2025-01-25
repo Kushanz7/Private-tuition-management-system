@@ -49,11 +49,11 @@ public Vector<Vector<Object>> getAllMarks() {
             return marksModel.getAllMarks();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error loading marks: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            return new Vector<>(); // Return an empty vector in case of error
+            return new Vector<>(); 
         }
     }
 
-    // Method to retrieve marks for a student ID
+    
     public ArrayList<marks> getMarksByStudentId(int studentId) {
         return marks.getMarksByStudentId(studentId);
     }

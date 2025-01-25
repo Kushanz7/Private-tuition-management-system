@@ -108,7 +108,7 @@ public class student {
         }
     }
     
-    // Update Student
+    
     public boolean updateStudent() {
         try {
             DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -129,7 +129,7 @@ public class student {
         }
     }
 
-    // Delete Student
+    
     public boolean deleteStudent() {
         try {
             DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -145,7 +145,7 @@ public class student {
         }
     }
 
-    // Get All Students
+    
     public static ArrayList<student> getAllStudents() {
         ArrayList<student> students = new ArrayList<>();
         try {

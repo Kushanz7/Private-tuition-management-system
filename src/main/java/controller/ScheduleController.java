@@ -47,7 +47,7 @@ public class ScheduleController {
                 });
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Consider logging for better error tracking
+            e.printStackTrace(); 
         }
         return schedules;
     }
@@ -70,15 +70,15 @@ public class ScheduleController {
     
     public void updateSchedule(String subject, String grade, String newSubject, String day, String startingTime, String endingTime, String newGrade) {
     try {
-        // Establish a database connection
+        
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
-        // Prepare the SQL update statement
+        
         String query = "UPDATE schedules SET subject = ?, day = ?, startingtime = ?, endingtime = ?, grade = ? WHERE subject = ? AND grade = ?";
         PreparedStatement ps = connection.prepareStatement(query);
 
-        // Set the parameters
+        
         ps.setString(1, newSubject);
         ps.setString(2, day);
         ps.setString(3, startingTime);
@@ -87,7 +87,7 @@ public class ScheduleController {
         ps.setString(6, subject);
         ps.setString(7, grade);
 
-        // Execute the update
+        
         int rowsAffected = ps.executeUpdate();
 
         if (rowsAffected > 0) {
