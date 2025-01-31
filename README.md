@@ -66,25 +66,25 @@ To get a local copy up and running, follow these steps:
 Login and Registration for tutors.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/Login.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/Login.png" alt="">
 </p>
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/Regis.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/Regis.png" alt="">
 </p>
 
 #### Dashboard
 The main hub for navigating the system's features.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/Dash.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/Dash.png" alt="">
 </p>
 
 #### Student Management
 Add, update, or delete student details.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/Students.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/Students.png" alt="">
 </p>
 
 
@@ -92,7 +92,7 @@ Add, update, or delete student details.
 Manage tuition fee payments and view the payment history.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/Payment.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/Payment.png" alt="">
 </p>
 
 
@@ -100,10 +100,10 @@ Manage tuition fee payments and view the payment history.
 Record and manage student marks for monthly tests.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/MarksAdd.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/MarksAdd.png" alt="">
 </p>
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/CheckResults.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/CheckResults.png" alt="">
 </p>
 
 
@@ -111,7 +111,7 @@ Record and manage student marks for monthly tests.
 Easily schedule and manage classes for students, ensuring no conflicts and smooth operations.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/Schedule.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/Schedule.png" alt="">
 </p>
 
 
@@ -119,25 +119,25 @@ Easily schedule and manage classes for students, ensuring no conflicts and smoot
 Generate detailed reports:
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/Reports.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/Reports.png" alt="">
 </p>
 
 - **Student Details Report**: Provides information on all registered students.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/StudentDetailsReport.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/StudentDetailsReport.png" alt="">
 </p>
 
 - **Payment Report**: Shows payment history and summaries.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/PaymentReport.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/PaymentReport.png" alt="">
 </p>
 
 - **Marks Report**: Displays student performance data based on monthly test results.
 
 <p align="center">
-  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/MarksReport.png" alt="">
+  <img src="https://github.com/Kushanz7/Private-tuition-management-system/blob/main/img/MarksReport.png" alt="">
 </p>
 
 ### Generating Reports
